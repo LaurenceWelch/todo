@@ -1,0 +1,87 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  --sub-text-color-1: gray;
+  --color-1: pink;
+}
+
+main-screen {
+  display: flex;
+}
+
+nav-bar {
+  display: flex;
+  flex-direction: column;
+  background-color: brown;
+}
+
+nav-bar > * {
+  background-color: blue;
+  padding: 10px 0;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
+modal-popup {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+warning-text {
+  color: red;
+}
+
+modal-popup > * + * {
+  margin-bottom: 10px;
+}
+
+todos-list {
+  display: block;
+}
+
+todo-item {
+  background-color: darkgreen;
+  margin-bottom: 1em;
+  padding: 3px;
+  display: block;
+  position: relative;
+  border: 1px solid var(--color-1);
+}
+
+.grayscale {
+  color: black;
+  filter: contrast(20%);
+}
+
+todo-item > * + * {
+  font-style: italic;
+}
+
+todo-item-done {
+  position: absolute;
+  background-color: greenyellow;
+  width: 2em;
+  height: 2em;
+  border-radius: 2em;
+  right: -1em;
+  justify-content: center;
+  align-items: center;
+  filter: contrast(100%);
+}
+
+todo-button {
+  color: var(--sub-text-color-1);
+}
+
+todo-item > todo-button + todo-button {
+  margin-left: 10px;
+}
