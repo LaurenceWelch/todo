@@ -5,7 +5,6 @@ import TodoList from "./screens/todos";
 function App() {
   return (
     <main-screen>
-      <NavBar />
       <TodoList />
     </main-screen>
   );

@@ -1,15 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { loadState } from "../helpers/localStorageApi";
+
+const util = (function () {
+  console.log("* util ran");
+  const list = loadState() ?? [];
+  const max = list.reduce((acc, cur) => {
+    return cur.id > acc ? cur.id : acc;
+  }, 1);
+  let id = max;
+  return {
+    getInitialList() {
+      return list;
+    },
+    nextId() {
+      id++;
+      return id;
+    },
+  };
+})();
 
 const initialState = {
   cur: null,
-  nextId: 6,
-  list: [
-    { id: 1, text: "go to the gym", done: false },
-    { id: 2, text: "study css", done: false },
-    { id: 3, text: "work on app", done: false },
-    { id: 4, text: "clean room", done: false },
-    { id: 5, text: "work on game", done: false },
-  ],
+  list: util.getInitialList(),
 };
 
 const isValid = (obj) => {
@@ -31,8 +43,7 @@ export const todoSlice = createSlice({
   reducers: {
     addTodo: (state, action) => {
       const todo = action.payload;
-      todo.id = state.nextId;
-      state.nextId++;
+      todo.id = util.nextId();
       state.list.push(todo);
     },
     editTodo: (state, action) => {
@@ -62,6 +73,9 @@ export const todoSlice = createSlice({
         }
       }
     },
+    clearTodo: (state) => {
+      state.list = [];
+    },
     finishTodo: (state, action) => {
       const id = action.payload;
       const i = getIndexOf(id, state.list);
@@ -72,6 +86,13 @@ export const todoSlice = createSlice({
   },
 });
 
-export const { addTodo, editTodo, setCur, nullCur, removeTodo, finishTodo } =
-  todoSlice.actions;
+export const {
+  addTodo,
+  editTodo,
+  setCur,
+  nullCur,
+  removeTodo,
+  finishTodo,
+  clearTodo,
+} = todoSlice.actions;
 export default todoSlice.reducer;

@@ -2,7 +2,8 @@ import AddTodo from "../addTodo";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowAddModal } from "../../features/uiSlice.js";
 import Todo from "./todo.jsx";
-import { nullCur } from "../../features/todoSlice.js";
+import { clearTodo, nullCur } from "../../features/todoSlice.js";
+import ButtonWithModal from "../../components/buttonWithModal.jsx";
 
 const TodoList = () => {
   const todos = useSelector((state) => state.todo.list);
@@ -26,6 +27,9 @@ const TodoList = () => {
       >
         add
       </button>
+      <ButtonWithModal action={() => dispatch(clearTodo())}>
+        clear
+      </ButtonWithModal>
     </div>
   );
   return <div>{content}</div>;

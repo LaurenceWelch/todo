@@ -3,8 +3,11 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  --sub-text-color-1: gray;
-  --color-1: pink;
+  --sub-text-color-1: #555;
+  --color-1: #999;
+  --confirmation-color-1: #bbb;
+  --todo-border-width: 2px;
+  --todo-border-color: gray;
 }
 
 main-screen {
@@ -46,15 +49,60 @@ modal-popup > * + * {
 
 todos-list {
   display: block;
+  margin-bottom: 10px;
+}
+
+todos-list > *:first-child {
+  border-top-left-radius: 0.2cm;
+  border-top-right-radius: 0.2cm;
+  border: var(--todo-border-width) solid var(--todo-border-color);
+}
+
+todos-list > *:last-child {
+  border-bottom-left-radius: 0.2cm;
+  border-bottom-right-radius: 0.2cm;
+}
+
+todos-list > *:not(:first-child) {
+  border-bottom: var(--todo-border-width) solid var(--todo-border-color);
+  border-left: var(--todo-border-width) solid var(--todo-border-color);
+  border-right: var(--todo-border-width) solid var(--todo-border-color);
 }
 
 todo-item {
-  background-color: darkgreen;
-  margin-bottom: 1em;
-  padding: 3px;
-  display: block;
+  background-color: inherit;
+  display: flex;
+  text-align: left;
+  flex-wrap: wrap;
   position: relative;
-  border: 1px solid var(--color-1);
+}
+
+todo-item > * + * {
+  padding: 0.2cm;
+  border-left: 1px dashed gray;
+}
+
+todo-item button {
+  padding: 0;
+  border: none;
+  font-style: italic;
+  color: #555;
+}
+
+check-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1cm;
+  min-height: 1cm;
+}
+
+check-circle {
+  width: 0.4cm;
+  height: 0.4cm;
+  border-radius: 1cm;
+  margin: 0 0.1cm;
+  border: 1px solid darkblue;
 }
 
 .grayscale {
@@ -62,26 +110,42 @@ todo-item {
   filter: contrast(20%);
 }
 
-todo-item > * + * {
-  font-style: italic;
-}
-
-todo-item-done {
-  position: absolute;
-  background-color: greenyellow;
-  width: 2em;
-  height: 2em;
-  border-radius: 2em;
-  right: -1em;
-  justify-content: center;
+confirmation-outer {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  display: flex;
   align-items: center;
-  filter: contrast(100%);
+  justify-content: center;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
 
-todo-button {
-  color: var(--sub-text-color-1);
+confirmation-inner {
+  padding: 10px;
+  display: inline-block;
+  background-color: var(--confirmation-color-1);
+  border-radius: 2px;
 }
 
-todo-item > todo-button + todo-button {
-  margin-left: 10px;
+button {
+  font-size: inherit;
+  padding: 10px;
+  margin: 3px;
+  border: unset;
+  border-radius: 2px;
+  color: black;
+  border: 1px solid dodgerblue;
+  background: none;
+}
+
+input {
+  font-size: inherit;
+  background: none;
+  padding: 10px;
+}
+
+input:focus {
+  border: 1px solid blue;
 }
