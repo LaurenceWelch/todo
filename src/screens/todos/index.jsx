@@ -1,17 +1,37 @@
-import AddTodo from "../addTodo";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowAddModal } from "../../features/uiSlice.js";
 import Todo from "./todo.jsx";
 import { clearTodo, nullCur } from "../../features/todoSlice.js";
 import ButtonWithModal from "../../components/buttonWithModal.jsx";
+import { useEffect } from "react";
+
+const isWrapped = (cur, prev) => {
+  const ct = cur.getBoundingClientRect().top;
+  const pt = prev.getBoundingClientRect().top;
+  // safety buffer of 10
+  if (ct > pt + 10) {
+    return true;
+  }
+  return false;
+};
 
 const TodoList = () => {
   const todos = useSelector((state) => state.todo.list);
-  const show = useSelector((state) => state.ui.showAddModal);
   const dispatch = useDispatch();
-  const content = show ? (
-    <AddTodo />
-  ) : (
+  useEffect(() => {
+    document.querySelectorAll("todo-item").forEach((todo) => {
+      const arr = todo.querySelectorAll("div");
+      let prev = arr[0];
+      for (let c = 0; c < arr.length; c++) {
+        const cur = arr[c];
+        if (isWrapped(cur, prev)) {
+          cur.style.borderLeft = "none";
+        }
+        prev = cur;
+      }
+    });
+  }, []);
+  return (
     <div>
       <h2>todo</h2>
       <todos-list>
@@ -32,7 +52,6 @@ const TodoList = () => {
       </ButtonWithModal>
     </div>
   );
-  return <div>{content}</div>;
 };
 
 export default TodoList;

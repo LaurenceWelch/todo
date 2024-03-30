@@ -1,23 +1,19 @@
 import { useDispatch } from "react-redux";
-import {
-  editTodo,
-  finishTodo,
-  removeTodo,
-  setCur,
-} from "../../features/todoSlice";
+import { finishTodo, removeTodo, setCur } from "../../features/todoSlice";
 import { setShowAddModal } from "../../features/uiSlice";
 
 const Todo = (props) => {
   const { id, text, done } = props.data;
   const dispatch = useDispatch();
   return (
-    <todo-item class={done && "grayscale"}>
-      <check-box>
-        <check-circle></check-circle>
-      </check-box>
+    <todo-item class={done && "done"}>
       <div>
-        {id}. {text}
+        <check-circle
+          class={done && "green"}
+          onClick={() => dispatch(finishTodo(id))}
+        ></check-circle>
       </div>
+      <div>{text}</div>
       <div>
         <button
           onClick={() => {
@@ -28,7 +24,6 @@ const Todo = (props) => {
           edit
         </button>
         <button onClick={() => dispatch(removeTodo(id))}>delete</button>
-        <button onClick={() => dispatch(finishTodo(id))}>finish</button>
       </div>
     </todo-item>
   );
