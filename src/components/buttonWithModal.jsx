@@ -5,7 +5,7 @@ const ButtonWithModal = (props) => {
   const content = show ? (
     <confirmation-outer>
       <confirmation-inner>
-        <h1>Are you sure?</h1>
+        <h2>Are you sure?</h2>
         <button
           onClick={() => {
             props.action();

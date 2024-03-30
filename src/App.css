@@ -5,9 +5,13 @@
   text-align: center;
   --sub-text-color-1: #555;
   --color-1: #999;
-  --confirmation-color-1: #bbb;
+  --confirmation-color-1: #ddd;
   --todo-border-width: 2px;
   --todo-border-color: gray;
+}
+
+h2 {
+  font-size: 1.2em;
 }
 
 main-screen {
@@ -53,14 +57,14 @@ todos-list {
 }
 
 todos-list > *:first-child {
-  border-top-left-radius: 0.2cm;
-  border-top-right-radius: 0.2cm;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
   border: var(--todo-border-width) solid var(--todo-border-color);
 }
 
 todos-list > *:last-child {
-  border-bottom-left-radius: 0.2cm;
-  border-bottom-right-radius: 0.2cm;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
 }
 
 todos-list > *:not(:first-child) {
@@ -70,15 +74,17 @@ todos-list > *:not(:first-child) {
 }
 
 todo-item {
+  padding: 2px;
   background-color: inherit;
   display: flex;
   text-align: left;
   flex-wrap: wrap;
   position: relative;
+  align-items: center;
 }
 
 todo-item > * + * {
-  padding: 0.2cm;
+  padding: 0 0.5em;
   border-left: 1px dashed gray;
 }
 
@@ -91,17 +97,18 @@ todo-item button {
 
 check-box {
   display: flex;
+  min-width: 1em;
+  min-height: 2em;
   align-items: center;
   justify-content: center;
-  min-width: 1cm;
-  min-height: 1cm;
 }
 
 check-circle {
-  width: 0.4cm;
-  height: 0.4cm;
-  border-radius: 1cm;
-  margin: 0 0.1cm;
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 1em;
+  margin: 0 0.4em;
+  background-color: yellowgreen;
   border: 1px solid darkblue;
 }
 
@@ -111,7 +118,7 @@ check-circle {
 }
 
 confirmation-outer {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   display: flex;
   align-items: center;
@@ -131,12 +138,10 @@ confirmation-inner {
 
 button {
   font-size: inherit;
-  padding: 10px;
+  padding: 3px;
   margin: 3px;
-  border: unset;
-  border-radius: 2px;
-  color: black;
-  border: 1px solid dodgerblue;
+  border: none;
+  color: dodgerblue;
   background: none;
 }
 

@@ -13,7 +13,7 @@ const TodoList = () => {
     <AddTodo />
   ) : (
     <div>
-      <h2>Todos</h2>
+      <h2>todo</h2>
       <todos-list>
         {todos.map((data, index) => (
           <Todo key={index} data={data} />
