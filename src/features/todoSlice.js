@@ -87,6 +87,24 @@ export const todoSlice = createSlice({
   },
 });
 
+export const progressRatio = (state) => {
+  let n = 0;
+  let d = 0;
+  state.todo.list.forEach((e) => {
+    if (e.done) {
+      n++;
+      d++;
+    } else {
+      d++;
+    }
+  });
+  return d !== 0 ? n / d : 0;
+};
+
+export const todoCount = (state) => {
+  return state.todo.list.length;
+};
+
 export const {
   addTodo,
   editTodo,

@@ -4,6 +4,7 @@ import Todo from "./todo.jsx";
 import { clearTodo, nullCur } from "../../features/todoSlice.js";
 import ButtonWithModal from "../../components/buttonWithModal.jsx";
 import { useEffect } from "react";
+import ProgressBar from "../../components/progressBar.jsx";
 
 const isWrapped = (cur, prev) => {
   const ct = cur.getBoundingClientRect().top;
@@ -34,6 +35,7 @@ const TodoList = () => {
   return (
     <div>
       <h2>todo</h2>
+      <ProgressBar />
       <todos-list>
         {todos.map((data, index) => (
           <Todo key={index} data={data} />
