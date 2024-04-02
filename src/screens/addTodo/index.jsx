@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo, editTodo } from "../../features/todoSlice.js";
-import { setShowAddModal } from "../../features/uiSlice.js";
+import { setView } from "../../features/uiSlice.js";
 
 const AddTodo = () => {
   const [todo, setTodo] = useState({ text: "" });
@@ -27,7 +27,7 @@ const AddTodo = () => {
 
   return (
     <modal-popup>
-      <h2>add new todo</h2>
+      <h2>{cur ? "edit" : "add"} todo</h2>
       <input
         value={todo.text}
         name="text"
@@ -45,12 +45,12 @@ const AddTodo = () => {
           if (res.err) {
             return setWarn({ show: true, text: res.err });
           }
-          dispatch(setShowAddModal(false));
+          dispatch(setView(0));
         }}
       >
         {cur ? "save" : "add"}
       </button>
-      <button onClick={() => dispatch(setShowAddModal(false))}>cancel</button>
+      <button onClick={() => dispatch(setView(0))}>cancel</button>
     </modal-popup>
   );
 };

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { finishTodo, removeTodo, setCur } from "../../features/todoSlice";
-import { setShowAddModal } from "../../features/uiSlice";
+import { setView } from "../../features/uiSlice";
 
 const Todo = (props) => {
   const { id, text, done } = props.data;
@@ -10,7 +10,12 @@ const Todo = (props) => {
       <div>
         <check-circle
           class={done && "green"}
-          onClick={() => dispatch(finishTodo(id))}
+          onClick={() => {
+            const res = dispatch(finishTodo(id));
+            if (res.payload) {
+              dispatch(setView(2));
+            }
+          }}
         ></check-circle>
       </div>
       <div>{text}</div>
@@ -18,7 +23,7 @@ const Todo = (props) => {
         <button
           onClick={() => {
             dispatch(setCur({ id, text }));
-            dispatch(setShowAddModal(true));
+            dispatch(setView(1));
           }}
         >
           edit

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setShowAddModal } from "../../features/uiSlice.js";
+import { setView } from "../../features/uiSlice.js";
 import Todo from "./todo.jsx";
 import { clearTodo, nullCur } from "../../features/todoSlice.js";
 import ButtonWithModal from "../../components/buttonWithModal.jsx";
@@ -42,7 +42,7 @@ const TodoList = () => {
       <button
         onClick={() => {
           dispatch(nullCur());
-          dispatch(setShowAddModal(true));
+          dispatch(setView(1));
         }}
       >
         add

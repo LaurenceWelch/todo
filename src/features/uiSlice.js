@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  showAddModal: false,
+  view: 0,
 };
 
 export const uiSlice = createSlice({
   name: "ui",
   initialState,
   reducers: {
-    setShowAddModal: (state, action) => {
-      state.showAddModal = action.payload;
+    setView: (state, action) => {
+      state.view = action.payload;
     },
   },
 });
 
-export const { setShowAddModal } = uiSlice.actions;
+export const { setView } = uiSlice.actions;
 export default uiSlice.reducer;

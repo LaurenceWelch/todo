@@ -157,3 +157,61 @@ input {
 input:focus {
   border: 1px solid blue;
 }
+
+sparkly-widget {
+  display: inline-block;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+sparkly-widget > p {
+  font-size: 2em;
+}
+
+sparkly-widget > img {
+  height: 10em;
+  animation-name: jump-ani;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes jump-ani {
+  50% {
+    transform: translate(0, -1em);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+star-graphic {
+  background: no-repeat url("assets/star.png");
+  background-size: 100%;
+  opacity: 0.8;
+  width: 0.1em;
+  height: 0.1em;
+  position: absolute;
+  left: var(--left);
+  top: var(--top);
+  animation: sparkle 3s;
+  animation-delay: var(--delay);
+  animation-iteration-count: infinite;
+}
+
+@keyframes sparkle {
+  25% {
+    transform: scale(15);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}

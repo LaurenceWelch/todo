@@ -81,6 +81,7 @@ export const todoSlice = createSlice({
       const i = getIndexOf(id, state.list);
       if (i > -1) {
         state.list[i].done = true;
+        action.payload = state.list.every((e) => e.done);
       }
     },
   },
