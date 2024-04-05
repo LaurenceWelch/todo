@@ -32,12 +32,19 @@ const TodoList = () => {
       }
     });
   }, []);
+  const sorted = [...todos].sort((a, b) => {
+    if (a.done && !b.done) return 1;
+    if (!a.done && b.done) return -1;
+    if (a.urgency === 1 && b.urgency === 0) return -1;
+    if (a.urgency === 0 && b.urgency === 1) return 1;
+    return 0;
+  });
   return (
     <div>
       <h2>todo</h2>
       <ProgressBar />
       <todos-list>
-        {todos.map((data, index) => (
+        {sorted.map((data, index) => (
           <Todo key={index} data={data} />
         ))}
       </todos-list>

@@ -3,10 +3,20 @@ import { finishTodo, removeTodo, setCur } from "../../features/todoSlice";
 import { setView } from "../../features/uiSlice";
 
 const Todo = (props) => {
-  const { id, text, done } = props.data;
+  const { id, text, done, urgency } = props.data;
   const dispatch = useDispatch();
+  let classStr = "";
+  if (done) {
+    classStr = "done";
+  } else {
+    if (urgency === 0) {
+      classStr = "normal";
+    } else {
+      classStr = "urgent";
+    }
+  }
   return (
-    <todo-item class={done && "done"}>
+    <todo-item class={classStr}>
       <div>
         <check-circle
           class={done && "green"}
@@ -22,7 +32,7 @@ const Todo = (props) => {
       <div>
         <button
           onClick={() => {
-            dispatch(setCur({ id, text }));
+            dispatch(setCur({ id, text, urgency }));
             dispatch(setView(1));
           }}
         >

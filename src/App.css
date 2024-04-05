@@ -1,13 +1,12 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0em;
   text-align: center;
-  --sub-text-color-1: #555;
-  --color-1: #999;
-  --confirmation-color-1: #ddd;
-  --todo-border-width: 2px;
-  --todo-border-color: gray;
+  font-size: 1.3em;
+  --border-1: 2px;
+  --border-2: 1px;
+  --margin-1: 0.3em;
 }
 
 h2 {
@@ -15,7 +14,8 @@ h2 {
 }
 
 main-screen {
-  display: flex;
+  display: block;
+  width: 100vw;
 }
 
 nav-bar {
@@ -23,7 +23,6 @@ nav-bar {
   flex-direction: column;
   background-color: brown;
 }
-
 nav-bar > * {
   background-color: blue;
   padding: 10px 0;
@@ -32,45 +31,58 @@ nav-bar > * {
 }
 
 modal-popup {
-  position: absolute;
-  display: flex;
+  background-color: var(--bg-color);
+  display: block;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  border: 2px solid var(--sub-bg-color);
+  margin: 1em;
+  border-radius: 0.3em;
+}
+modal-popup > div.section {
+  margin: 0.2em;
+}
+modal-popup > div.x-bar {
+  position: relative;
+  background-color: var(--sub-bg-color);
+  content: "h";
+  height: 1.6em;
+}
+x-button {
+  cursor: default;
+  display: inline-block;
+  position: absolute;
+  color: var(--color-1);
+  right: 0.2em;
+  top: 0.2em;
+  background-color: red;
+  width: 1.2em;
+  height: 1.2em;
+  line-height: 1.2em;
+  border-radius: 1.6em;
+}
+modal-popup > * + * {
+  margin-bottom: 10px;
 }
 
 warning-text {
   color: red;
 }
 
-modal-popup > * + * {
-  margin-bottom: 10px;
-}
-
 todos-list {
   display: block;
-  margin-bottom: 10px;
+  margin: 0 0.3em;
+  margin-bottom: 0.3em;
 }
-
 todos-list > *:first-child {
-  border-top-left-radius: 0.5em;
-  border-top-right-radius: 0.5em;
-  border: var(--todo-border-width) solid var(--todo-border-color);
+  /* border-top-left-radius: 0.5em; */
+  /* border-top-right-radius: 0.5em; */
+  border-top: var(--border-1) solid var(--sub-bg-color);
+  border-bottom: var(--border-1) solid var(--sub-bg-color);
 }
-
-todos-list > *:last-child {
-  border-bottom-left-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-}
-
 todos-list > *:not(:first-child) {
-  border-bottom: var(--todo-border-width) solid var(--todo-border-color);
-  border-left: var(--todo-border-width) solid var(--todo-border-color);
-  border-right: var(--todo-border-width) solid var(--todo-border-color);
+  border-bottom: var(--border-1) solid var(--sub-bg-color);
+  /* border-left: var(--todo-border-width) solid var(--todo-border-color); */
+  /* border-right: var(--todo-border-width) solid var(--todo-border-color); */
 }
 
 todo-item {
@@ -80,7 +92,19 @@ todo-item {
   text-align: left;
   flex-wrap: wrap;
   position: relative;
-  align-items: center;
+  transition: 0.1s;
+}
+todo-item.done {
+  background-color: var(--done-color);
+  text-decoration: line-through;
+  opacity: 0.6;
+  text-decoration-color: gray;
+}
+todo-item.normal {
+  background-color: var(--normal-color);
+}
+todo-item.urgent {
+  background-color: var(--urgent-color);
 }
 
 todo-item > div:first-child {
@@ -90,38 +114,30 @@ todo-item > div:first-child {
   align-items: center;
   justify-content: center;
 }
-
 check-circle {
   width: 0.8em;
   height: 0.8em;
   border-radius: 1em;
-  border: 1px solid gray;
+  border: 2px solid dodgerblue;
+  background-color: var(--bg-color);
 }
-
 .green {
-  background-color: yellowgreen;
+  background-color: pink;
 }
-
 todo-item > div:not(:first-child) {
   padding: 0 0.5em;
-  border-left: 2px dashed #bbb;
+  border-left: 2px dashed var(--sub-bg-color);
 }
-
 todo-item button {
   padding: 0;
+  margin: 0 0.3em;
   border: none;
   font-style: italic;
-  color: #555;
-}
-
-.done {
-  text-decoration: line-through;
-  text-decoration-color: gray;
-  color: gray;
+  color: var(--sub-color);
+  background-color: unset;
 }
 
 confirmation-outer {
-  background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   display: flex;
   align-items: center;
@@ -133,29 +149,30 @@ confirmation-outer {
 }
 
 confirmation-inner {
-  padding: 10px;
+  padding: 0.3em;
   display: inline-block;
-  background-color: var(--confirmation-color-1);
-  border-radius: 2px;
+  background-color: var(--bg-color);
+  border-radius: 0.2em;
 }
 
 button {
   font-size: inherit;
-  padding: 3px;
-  margin: 3px;
+  padding: 0.3em;
+  margin: 0.2em;
   border: none;
-  color: dodgerblue;
-  background: none;
+  color: var(--color-1);
+  border-radius: 0.3em;
+  background-color: dodgerblue;
 }
 
 input {
+  color: inherit;
   font-size: inherit;
   background: none;
-  padding: 10px;
-}
-
-input:focus {
-  border: 1px solid blue;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  width: calc(100% - 1em);
+  border: 1px solid var(--border-color);
 }
 
 sparkly-widget {
@@ -219,25 +236,66 @@ star-graphic {
 progress-container {
   display: block;
   margin: 0 1em 1em 1em;
-  border: 2px solid #aaa;
+  border: 2px solid var(--sub-bg-color);
   position: relative;
   border-radius: 0.3em;
 }
-
 progress-container > progress-dash {
   position: absolute;
   display: block;
   top: 0;
   height: 100%;
   width: var(--width);
-  border-right: 2px dashed #aaa;
+  border-right: 2px dashed var(--sub-bg-color);
 }
-
 progress-bar {
   display: block;
   height: 1em;
   width: var(--progress);
-  background-color: yellowgreen;
+  background-color: darkcyan;
   transition: 0.4s;
   border-radius: 0.3em;
+}
+
+bool-container {
+  display: block;
+  margin: var(--margin-1);
+  margin-top: 0.5em;
+  position: relative;
+}
+bool-container > button {
+  margin: 0;
+  padding: 0.3em;
+  transition: 0.4s;
+  background-color: unset;
+  color: unset;
+  border-radius: unset;
+}
+bool-container > button:first-child {
+  border-top-left-radius: 0.3em;
+  border-bottom-left-radius: 0.3em;
+}
+bool-container > button:last-child {
+  border-top-right-radius: 0.3em;
+  border-bottom-right-radius: 0.3em;
+}
+bool-container > button.normal-selected {
+  color: var(--color-1);
+  background-color: var(--bg-color-1);
+  border: 1px solid var(--bg-color-1);
+}
+bool-container > button.normal-not-selected {
+  border: 1px solid var(--sub-color);
+  transform: translate(0, -0.3em);
+  box-shadow: 0 0.3em var(--sub-bg-color);
+}
+bool-container > button.urgent-selected {
+  color: var(--color-1);
+  background-color: var(--urgent-color);
+  border: 1px solid var(--urgent-color);
+}
+bool-container > button.urgent-not-selected {
+  border: 1px solid var(--sub-color);
+  transform: translate(0, -0.3em);
+  box-shadow: 0 0.3em var(--sub-bg-color);
 }

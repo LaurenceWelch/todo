@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { loadState } from "../helpers/localStorageApi";
 
 const util = (function () {
-  console.log("* util ran");
   const list = loadState() ?? [];
   const max = list.reduce((acc, cur) => {
     return cur.id > acc ? cur.id : acc;
@@ -80,7 +79,7 @@ export const todoSlice = createSlice({
       const id = action.payload;
       const i = getIndexOf(id, state.list);
       if (i > -1) {
-        state.list[i].done = true;
+        state.list[i].done = !state.list[i].done;
         action.payload = state.list.every((e) => e.done);
       }
     },

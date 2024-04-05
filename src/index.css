@@ -3,8 +3,25 @@
   line-height: 1.5;
   font-weight: 400;
 
-  background-color: #ddd;
+  background-color: white;
   color: black;
+  --color: black;
+  --bg-color: white;
+
+  --border-color: gray;
+  --sub-text-color-1: #555;
+
+  --color-1: white;
+  --bg-color-1: orange;
+
+  --confirmation-color-1: #ddd;
+  --not-color: green;
+  --done-color: none;
+
+  --normal-color: #884dff;
+  --urgent-color: #ff6666;
+  --sub-bg-color: #ccc;
+  --sub-color: #ccc;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,4 +35,15 @@ body {
   place-items: center;
   min-width: 30px;
   min-height: 100vh;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: azure;
+    background-color: #222;
+    --color: azure;
+    --bg-color: #222;
+    --sub-color: #ccc;
+    --sub-bg-color: #555;
+  }
 }
