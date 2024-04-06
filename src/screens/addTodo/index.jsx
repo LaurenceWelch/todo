@@ -7,6 +7,7 @@ import BoolInput from "../../components/boolInput.jsx";
 const AddTodo = () => {
   const [todo, setTodo] = useState({ text: "", urgency: 0 });
   const [warn, setWarn] = useState({ show: false, text: "" });
+  const [curLoading, setCurLoading] = useState(true);
 
   const dispatch = useDispatch();
   const cur = useSelector((state) => state.todo.cur);
@@ -18,6 +19,7 @@ const AddTodo = () => {
     if (cur) {
       setTodo(cur);
     }
+    setCurLoading(false);
   }, [cur]);
 
   const handleChange = (e) => {
@@ -42,7 +44,9 @@ const AddTodo = () => {
         placeholder="description"
         ref={inputRef}
       />
-      <BoolInput onChangeUrgency={handleUrgencyChange} si={todo.urgency} />
+      {!curLoading && (
+        <BoolInput onChangeUrgency={handleUrgencyChange} si={todo.urgency} />
+      )}
       {warn.show && <warning-text>{warn.text}</warning-text>}
       <div className="section">
         <button
